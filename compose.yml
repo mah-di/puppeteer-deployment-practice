@@ -1,3 +1,5 @@
 services:
   app:
     build: .
+    ports:
+      - 13006:3000
