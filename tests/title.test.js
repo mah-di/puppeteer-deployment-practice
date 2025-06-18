@@ -8,7 +8,9 @@ let page;
 describe('example.com website loads properly', () => {
   before(async () => {
     if (!browser) {
-      browser = await puppeteer.launch();
+      browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
     }
     if (!page) {
       page = await browser.newPage();
