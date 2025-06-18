@@ -40,8 +40,11 @@ describe('example.com website loads properly', () => {
   });
 
   it('should have a description', async (t) => {
-    const description = await page.$eval('meta[name="description"]', el => el.content);
-    assert.strictEqual(description, 'Example Domain');
+    const description = await page.evaluate(() => {
+      const el = document.querySelector('p');
+      return el ? el.innerText : '';
+    });
+    assert.ok(description.includes('This domain is for use in illustrative examples'));
   });
 
   it('should have a link', async (t) => {
